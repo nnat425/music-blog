@@ -8,20 +8,26 @@ echo "Hello World!";
 ?>
 
 <?php
-$servername = "localhost:8001";
-$username = "username";
+$servername = "127.0.0.1";
+$username = "music_user";
 $password = "password";
+$dbname = "music_blog";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    echo "Not connected";
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error() . "(" . mysqli_connect_errno() . ")" );
 }
 echo "Connected successfully";
 ?>
+
+<?php
+mysqli_close($conn);
+?>
+
+
 
 </body>
 </html>
