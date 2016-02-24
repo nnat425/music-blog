@@ -1,6 +1,8 @@
 <html>
 <body>
 
+
+
   <h1>My music blog</h1>
 
   <?php
@@ -21,6 +23,23 @@
     die("Connection failed: " . mysqli_connect_error() . "(" . mysqli_connect_errno() . ")" );
   }
   echo "Connected successfully";
+
+
+$title = $_POST['title'];
+$description = $_POST['description'];
+$link = $_POST['link'];
+
+
+  $query = "INSERT INTO posts(title,link,description)VALUES('$title','$link','$description')";
+
+  $result = mysqli_query($conn, $query);
+  if($result) {
+    echo "Successfully updated database";
+  }
+  else {
+    die('Error: '.mysqli_error($conn));
+  }
+
   ?>
 
   <?php
@@ -30,12 +49,12 @@
 
   <form method="POST" action="index.php">
     <br>
-    Name
+    Title
     <br>
     <input type="text" name="title">
     <br>
     <br>
-    Email
+    Link
     <br>
     <input type="text" name="link">
     <br>
